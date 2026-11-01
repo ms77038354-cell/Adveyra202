@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ADVEYRA AI STUDIO</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="login" class="login-wrap">
+    <form id="loginForm" class="login-card">
+      <div class="brand-mark">A</div>
+      <p class="eyebrow">PRIVATE DEVELOPMENT WORKSPACE</p>
+      <h1>ADVEYRA AI STUDIO</h1>
+      <p class="muted">Sign in to your AI coding workspace.</p>
+      <label>Admin username<input id="username" autocomplete="username" required></label>
+      <label>Admin password<input id="password" type="password" autocomplete="current-password" required></label>
+      <button class="primary" type="submit">Sign in</button>
+      <p id="loginError" class="error"></p>
+    </form>
+  </div>
+
+  <div id="app" class="app hidden">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark small">A</span><strong>ADVEYRA <span>AI STUDIO</span></strong></div>
+      <div class="top-actions"><span id="status" class="status">Checking connection…</span><button id="diagnosticsBtn" class="secondary">Diagnostics</button><button id="exportBtn" class="secondary">Export ZIP</button><button id="pushBtn" class="secondary">Push to GitHub</button><button id="logoutBtn" class="ghost">Log out</button></div>
+    </header>
+    <main class="layout">
+      <aside class="chat-panel panel">
+        <div class="panel-heading"><div><p class="eyebrow">AI DEVELOPER</p><h2>Agent Chat</h2></div><span class="online-dot"></span></div>
+        <div id="chatMessages" class="messages">
+          <div class="bubble assistant">Hi! I’m your ADVEYRA coding agent. Tell me what you want to build or change. I can inspect, create and edit project files in this workspace.</div>
+        </div>
+        <form id="chatForm" class="composer">
+          <textarea id="prompt" rows="3" placeholder="Describe a website, feature, or code change…" required></textarea>
+          <div class="composer-footer"><span class="muted tiny">Gemini API usage is subject to Google's free-tier limits.</span><button id="sendBtn" class="primary" type="submit">Send ↗</button></div>
+        </form>
+      </aside>
+      <section class="files-panel panel">
+        <div class="panel-heading"><div><p class="eyebrow">PROJECT WORKSPACE</p><h2>Files</h2></div><div class="file-actions"><button id="newFileBtn" class="ghost">New file</button><button id="newFolderBtn" class="ghost">New folder</button><button id="uploadFileBtn" class="ghost">Upload file</button><button id="importZipBtn" class="ghost">Import ZIP</button><button id="refreshFiles" class="ghost">Refresh</button><input id="uploadFileInput" type="file" hidden><input id="importZipInput" type="file" accept=".zip,application/zip" hidden></div></div>
+        <div id="fileList" class="file-list"><p class="muted">Loading files…</p></div>
+        <div class="editor-head"><span id="currentFile">Select a file</span><div class="file-actions"><button id="renameFile" class="ghost" disabled>Rename</button><button id="deleteFile" class="ghost danger" disabled>Delete</button><button id="saveFile" class="secondary" disabled>Save file</button></div></div>
+        <textarea id="editor" class="editor" spellcheck="false" placeholder="Select a file to view or edit its contents…"></textarea>
+      </section>
+      <section class="preview-panel panel">
+        <div class="panel-heading"><div><p class="eyebrow">LOCAL PROJECT VIEW</p><h2>Preview</h2></div><button id="previewBtn" class="secondary">Preview HTML</button></div>
+        <div class="preview-toolbar" role="toolbar" aria-label="Preview device size">
+          <div class="device-switch" role="group" aria-label="Device preview">
+            <button type="button" class="device-btn active" data-device="desktop" aria-pressed="true" title="Desktop preview">▰ <span>Desktop</span></button>
+            <button type="button" class="device-btn" data-device="tablet" aria-pressed="false" title="Tablet preview">▯ <span>Tablet</span></button>
+            <button type="button" class="device-btn" data-device="mobile" aria-pressed="false" title="Mobile preview">▯ <span>Mobile</span></button>
+          </div>
+          <span id="viewportLabel" class="viewport-label">Desktop · Responsive width</span>
+          <button id="reloadPreviewBtn" type="button" class="ghost preview-reload" title="Reload preview">↻ Reload</button>
+        </div>
+        <div class="preview-note">Preview your saved frontend and switch between desktop, tablet and phone widths. HTML/CSS/JS projects run here; projects requiring a build command, backend server or database need that runtime configured separately.</div>
+        <div id="previewStage" class="preview-stage device-desktop"><iframe id="preview" title="Project preview" sandbox="allow-scripts allow-forms allow-modals"></iframe></div>
+        <div class="deploy-note"><strong>Deployment:</strong> Push files to GitHub; Render can auto-deploy from the connected repository. This workspace includes diagnostics and file tools, but does not expose unrestricted shell access or provision arbitrary servers.</div>
+      </section>
+    </main>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
